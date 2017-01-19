@@ -1,0 +1,48 @@
+$signal-strength-width: 25px;
+$signal-strength-height: 15px;
+$signal-strength-bars: 5;
+$signal-bar-default-bg: rgba(0,0,0,0.2);
+$signal-bar-border-size: 0px;
+$signal-bar-border-color: black;
+$signal-bar-border: $signal-bar-border-size solid $signal-bar-border-color;
+$signal-bar-spacer: 1px;
+$signal-bar-h-increment: $signal-strength-width / $signal-strength-bars;
+$signal-bar-width: $signal-bar-h-increment - $signal-bar-spacer - $signal-bar-border-size;
+$signal-bar-v-increment: $signal-strength-height / $signal-strength-bars;
+$signal-bar-filled-bg: white;
+
+.signal-strength {
+  position: relative;
+  display: inline-block;
+  width: $signal-strength-width;
+  height: $signal-strength-height;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.signal-bar {
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+  float: left;
+  width: $signal-bar-width;
+  margin-left: 0px;
+  margin-right: $signal-bar-spacer;
+  border: $signal-bar-border;
+  background-color: $signal-bar-default-bg;
+}
+
+.signal-bar-filled {
+  background-color: $signal-bar-filled-bg;
+}
+
+@mixin signal-bars() {
+  @for $i from 1 through $signal-strength-bars {
+    .signal-bar-#{$i} {
+      left: ($i - 1) * $signal-bar-h-increment;
+      height: $i * $signal-bar-v-increment;
+    }
+  }
+}
+
+@include signal-bars();
