@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`br-signal-strength`
+A simple UI element to indicate signal strength
+
+@demo demo/index.html 
+-->
+
+<dom-module id="br-signal-strength">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'br-signal-strength',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'br-signal-strength',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
