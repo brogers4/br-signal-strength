@@ -42,6 +42,35 @@
           <br-signal-strength rssi="-65"></br-signal-strength>
         </template>
       </demo-snippet>
+      <h3>Basic br-signal-strength demo using custom styles</h3>
+      <demo-snippet>
+        <template>
+          <br-signal-strength level="3"></br-signal-strength>
+          <br-signal-strength level="3" class="green"></br-signal-strength>
+          <br-signal-strength level="3" class="hide-empty"></br-signal-strength>
+          <br-signal-strength level="3" class="large"></br-signal-strength>
+          <br-signal-strength level="3" class="outline"></br-signal-strength>
+
+          <style is="custom-style">
+            .green {
+              --br-signal-strength-filled-color: rgb(11, 179, 31);
+            }
+            .hide-empty {
+              --br-signal-strength-empty-color: rgba(0,0,0,0);
+            }
+            .large {
+              --br-signal-strength-height: 30px;
+              --br-signal-strength-width: 50px;
+              --br-signal-strength-gutter: 2px;
+            }
+            .outline {
+              --br-signal-strength-border: 1px solid black;
+              --br-signal-strength-empty-color: white;
+              --br-signal-strength-filled-color: black;
+            }
+          </style>
+        </template>
+      </demo-snippet>
     </div>
   </body>
 </html>
