@@ -45,11 +45,11 @@
       <h3>Basic br-signal-strength demo using custom styles</h3>
       <demo-snippet>
         <template>
-          <br-signal-strength level="3"></br-signal-strength>
           <br-signal-strength level="3" class="green"></br-signal-strength>
           <br-signal-strength level="3" class="hide-empty"></br-signal-strength>
           <br-signal-strength level="3" class="large"></br-signal-strength>
           <br-signal-strength level="3" class="outline"></br-signal-strength>
+          <br-signal-strength level="3" class="dots"></br-signal-strength>
 
           <style is="custom-style">
             .green {
@@ -67,6 +67,16 @@
               --br-signal-strength-border: 1px solid black;
               --br-signal-strength-empty-color: white;
               --br-signal-strength-filled-color: black;
+            }
+            .dots {
+              --br-signal-strength-width: 60px;
+              --br-signal-strength-height: 10px;
+              --br-signal-strength-gutter: 2px;
+              --br-signal-strength-bar: {
+                height: 10px !important;
+                width: 10px !important;
+                border-radius: 50%;
+              }
             }
           </style>
         </template>
