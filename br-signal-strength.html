@@ -4,7 +4,7 @@
 `br-signal-strength`
 A simple UI element to indicate signal strength
 
-@demo demo/index.html 
+@demo demo/index.html
 -->
 
 <dom-module id="br-signal-strength">
@@ -13,8 +13,65 @@ A simple UI element to indicate signal strength
       :host {
         display: block;
       }
+
+      :host .signal-strength {
+      	position: relative;
+      	display: inline-block;
+      	width: 25px;
+      	height: 15px;
+      	/* background-color: white; */
+      	margin-left: 1px;
+      	margin-right: 1px;
+      }
+
+      :host .signal-bar {
+      	position: absolute;
+      	bottom: 0;
+      	display: inline-block;
+      	float: left;
+      	width: 4px;
+      	margin-left: 0px;
+      	margin-right: 1px;
+      	border: 0px solid black;
+      	background-color: rgba(0,0,0,0.2);
+      }
+
+      :host .signal-bar-1 {
+      	left: 0;
+      	height: 3px;
+      }
+
+      :host .signal-bar-2 {
+      	left: 5px;
+      	height: 6px;
+      }
+
+      :host .signal-bar-3 {
+      	left: 10px;
+      	height: 9px;
+      }
+
+      :host .signal-bar-4 {
+      	left: 15px;
+      	height: 12px;
+      }
+
+      :host .signal-bar-5 {
+      	left: 20px;
+      	height: 15px;
+      }
+
+      :host .signal-bar-filled, .signal-bar[active] {
+      	background-color: #0067c6;
+      }
     </style>
-    <h2>Hello [[prop1]]</h2>
+    <div id="signalStrength" class="signal-strength">
+      <span class="signal-bar signal-bar-1" active$="{{_checkBarActive(1,level)}}"></span>
+      <span class="signal-bar signal-bar-2" active$="{{_checkBarActive(2,level)}}"></span>
+      <span class="signal-bar signal-bar-3" active$="{{_checkBarActive(3,level)}}"></span>
+      <span class="signal-bar signal-bar-4" active$="{{_checkBarActive(4,level)}}"></span>
+      <span class="signal-bar signal-bar-5" active$="{{_checkBarActive(5,level)}}"></span>
+    </div>
   </template>
 
   <script>
@@ -23,11 +80,18 @@ A simple UI element to indicate signal strength
       is: 'br-signal-strength',
 
       properties: {
-        prop1: {
-          type: String,
-          value: 'br-signal-strength',
+        level: {
+          type: Number,
+          value: 0
         },
+        rssi: {
+          type: Number
+        }
       },
+
+      _checkBarActive: function(bar,level){
+        return (level >= bar);
+      }
 
     });
   </script>
