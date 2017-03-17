@@ -20,7 +20,7 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic br-signal-strength demo</h3>
+      <h3>Basic br-signal-strength demo using level</h3>
       <demo-snippet>
         <template>
           <br-signal-strength level="0"></br-signal-strength>
@@ -29,6 +29,17 @@
           <br-signal-strength level="3"></br-signal-strength>
           <br-signal-strength level="4"></br-signal-strength>
           <br-signal-strength level="5"></br-signal-strength>
+        </template>
+      </demo-snippet>
+      <h3>Basic br-signal-strength demo using RSSI</h3>
+      <demo-snippet>
+        <template>
+          <br-signal-strength rssi="-90"></br-signal-strength>
+          <br-signal-strength rssi="-85"></br-signal-strength>
+          <br-signal-strength rssi="-80"></br-signal-strength>
+          <br-signal-strength rssi="-75"></br-signal-strength>
+          <br-signal-strength rssi="-70"></br-signal-strength>
+          <br-signal-strength rssi="-65"></br-signal-strength>
         </template>
       </demo-snippet>
     </div>

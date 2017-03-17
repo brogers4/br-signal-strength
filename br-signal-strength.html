@@ -84,13 +84,47 @@ A simple UI element to indicate signal strength
           type: Number,
           value: 0
         },
+        levelOne: {
+          type: Number,
+          value: -87
+        },
+        levelTwo: {
+          type: Number,
+          value: -82
+        },
+        levelThree: {
+          type: Number,
+          value: -77
+        },
+        levelFour: {
+          type: Number,
+          value: -72
+        },
+        levelFive: {
+          type: Number,
+          value: -67
+        },
         rssi: {
           type: Number
         }
       },
 
+      observers: [
+        '_observeRssi(rssi,levelOne,levelTwo,levelThree,levelFour,levelFive)'
+      ],
+
       _checkBarActive: function(bar,level){
         return (level >= bar);
+      },
+
+      _observeRssi: function(rssi,l1,l2,l3,l4,l5){
+        if(typeof rssi !== "number" || rssi === null) return;
+        if(rssi < l1) this.set('level',0);
+        else if(rssi < l2) this.set('level',1);
+        else if(rssi < l3) this.set('level',2);
+        else if(rssi < l4) this.set('level',3);
+        else if(rssi < l5) this.set('level',4);
+        else this.set('level',5)
       }
 
     });
