@@ -47,6 +47,7 @@ A simple UI element to indicate signal strength.
       }
 
       :host .signal-bar {
+        @apply(--br-signal-strength-bar);
       	position: absolute;
       	bottom: 0;
       	display: inline-block;
@@ -57,38 +58,42 @@ A simple UI element to indicate signal strength.
       	margin-right: var(--br-signal-strength-gutter);
         border: var(--br-signal-strength-empty-border,--br-signal-strength-border);
       	background-color: var(--br-signal-strength-empty-color,rgba(0,0,0,0.2));
-        @apply(--br-signal-strength-bar);
       }
 
       :host .signal-bar-1 {
       	left: 0;
         height: calc(var(--br-signal-strength-height) * 1 / 5);
+        @apply(--br-signal-strength-bar-1);
       }
 
       :host .signal-bar-2 {
         left: calc(var(--br-signal-strength-width) * 1 / 5 );
         height: calc(var(--br-signal-strength-height) * 2 / 5);
+        @apply(--br-signal-strength-bar-2);
       }
 
       :host .signal-bar-3 {
         left: calc(var(--br-signal-strength-width) * 2 / 5);
         height: calc(var(--br-signal-strength-height) * 3 / 5);
+        @apply(--br-signal-strength-bar-3);
       }
 
       :host .signal-bar-4 {
         left: calc(var(--br-signal-strength-width) * 3 / 5);
         height: calc(var(--br-signal-strength-height) * 4 / 5);
+        @apply(--br-signal-strength-bar-4);
       }
 
       :host .signal-bar-5 {
         left: calc(var(--br-signal-strength-width) * 4 / 5);
         height: calc(var(--br-signal-strength-height) * 5 / 5);
+        @apply(--br-signal-strength-bar-5);
       }
 
       :host .signal-bar-filled, .signal-bar[active] {
+        @apply(--br-signal-strength-bar-filled);
         border: var(--br-signal-strength-filled-border,--br-signal-strength-border);
       	background-color: var(--br-signal-strength-filled-color,#0067c6);
-        @apply(--br-signal-strength-bar-filled);
       }
     </style>
     <div id="signalStrength" class="signal-strength">

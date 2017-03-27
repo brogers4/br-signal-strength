@@ -49,6 +49,7 @@
           <br-signal-strength level="3" class="hide-empty"></br-signal-strength>
           <br-signal-strength level="3" class="large"></br-signal-strength>
           <br-signal-strength level="3" class="outline"></br-signal-strength>
+          <br-signal-strength level="3" class="triangle"></br-signal-strength>
           <br-signal-strength level="3" class="dots"></br-signal-strength>
 
           <style is="custom-style">
@@ -67,6 +68,19 @@
               --br-signal-strength-border: 1px solid black;
               --br-signal-strength-empty-color: white;
               --br-signal-strength-filled-color: black;
+            }
+            .triangle {
+              --br-signal-strength-width: 30px;
+              --br-signal-strength-height: 30px;
+              --br-signal-strength-gutter: 0px;
+              --br-signal-strength-empty-color: transparent;
+              --br-signal-strength-filled-color: transparent;
+              --br-signal-strength-bar: {
+                background-image: linear-gradient(135deg,transparent,transparent 6px,rgba(0,0,0,0.2) 6px, rgba(0,0,0,0.2));
+              }
+              --br-signal-strength-bar-filled: {
+                background-image: linear-gradient(135deg,transparent,transparent 6px,black 6px, black);
+              }
             }
             .dots {
               --br-signal-strength-width: 60px;
