@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>br-signal-strength demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../br-signal-strength.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+      br-signal-strength {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic br-signal-strength demo using level</h3>
+      <demo-snippet>
+        <template>
+          <br-signal-strength level="0"></br-signal-strength>
+          <br-signal-strength level="1"></br-signal-strength>
+          <br-signal-strength level="2"></br-signal-strength>
+          <br-signal-strength level="3"></br-signal-strength>
+          <br-signal-strength level="4"></br-signal-strength>
+          <br-signal-strength level="5"></br-signal-strength>
+        </template>
+      </demo-snippet>
+      <h3>Basic br-signal-strength demo using RSSI</h3>
+      <demo-snippet>
+        <template>
+          <br-signal-strength rssi="-90"></br-signal-strength>
+          <br-signal-strength rssi="-85"></br-signal-strength>
+          <br-signal-strength rssi="-80"></br-signal-strength>
+          <br-signal-strength rssi="-75"></br-signal-strength>
+          <br-signal-strength rssi="-70"></br-signal-strength>
+          <br-signal-strength rssi="-65"></br-signal-strength>
+        </template>
+      </demo-snippet>
+      <h3>Basic br-signal-strength demo using custom styles</h3>
+      <demo-snippet>
+        <template>
+          <br-signal-strength level="3" class="green"></br-signal-strength>
+          <br-signal-strength level="3" class="hide-empty"></br-signal-strength>
+          <br-signal-strength level="3" class="large"></br-signal-strength>
+          <br-signal-strength level="3" class="outline"></br-signal-strength>
+          <br-signal-strength level="3" class="triangle"></br-signal-strength>
+          <br-signal-strength level="3" class="dots"></br-signal-strength>
+
+          <style is="custom-style">
+            .green {
+              --br-signal-strength-filled-color: rgb(11, 179, 31);
+            }
+            .hide-empty {
+              --br-signal-strength-empty-color: rgba(0,0,0,0);
+            }
+            .large {
+              --br-signal-strength-height: 30px;
+              --br-signal-strength-width: 50px;
+              --br-signal-strength-gutter: 2px;
+            }
+            .outline {
+              --br-signal-strength-border: 1px solid black;
+              --br-signal-strength-empty-color: white;
+              --br-signal-strength-filled-color: black;
+            }
+            .triangle {
+              --br-signal-strength-width: 30px;
+              --br-signal-strength-height: 30px;
+              --br-signal-strength-gutter: 0px;
+              --br-signal-strength-empty-color: transparent;
+              --br-signal-strength-filled-color: transparent;
+              --br-signal-strength-bar: {
+                background-image: linear-gradient(135deg,transparent,transparent 6px,rgba(0,0,0,0.2) 6px, rgba(0,0,0,0.2));
+              }
+              --br-signal-strength-bar-filled: {
+                background-image: linear-gradient(135deg,transparent,transparent 6px,black 6px, black);
+              }
+            }
+            .dots {
+              --br-signal-strength-width: 60px;
+              --br-signal-strength-height: 10px;
+              --br-signal-strength-gutter: 2px;
+              --br-signal-strength-bar: {
+                height: 10px !important;
+                width: 10px !important;
+                border-radius: 50%;
+              }
+            }
+          </style>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`br-signal-strength`
+A simple UI element to indicate signal strength.
+
+### Basic Usage
+`<br-signal-strength level="3"></br-signal-strength>`
+
+### Styling
+`<br-signal-strength>` provides the following custom properties for styling:
+
+| Custom Property | Description | Default |
+| ---------------- | ------------- | --------- |
+| `--br-signal-strength-width` | Width of element | 25px |
+| `--br-signal-strength-height` | Height of element | 15px |
+| `--br-signal-strength-gutter` | Space between bars | 1px |
+| `--br-signal-strength-border` | Border around each bar | none |
+| `--br-signal-strength-empty-border` | Border around empty bars | `--br-signal-strength-border` |
+| `--br-signal-strength-filled-border` | Border around filled bars | `--br-signal-strength-border` |
+| `--br-signal-strength-empty-color` | Color of empty bars | rgba(0,0,0,0.2) |
+| `--br-signal-strength-filled-color` | Color of filled bars | #0067c6 |
+| `--br-signal-strength-bar` | Mixin applied to all bars | {} |
+| `--br-signal-strength-bar-filled` | Mixin applied only to filled bars | {} |
+
+@demo demo/index.html
+-->
+
+<dom-module id="br-signal-strength">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --br-signal-strength-width: 25px;
+        --br-signal-strength-height: 15px;
+        --br-signal-strength-gutter: 1px;
+        --br-signal-strength-border: none;
+      }
+
+      :host .signal-strength {
+      	position: relative;
+      	display: inline-block;
+      	width: var(--br-signal-strength-width);
+      	height: var(--br-signal-strength-height);
+      	margin-left: 1px;
+      	margin-right: 1px;
+      }
+
+      :host .signal-bar {
+        @apply(--br-signal-strength-bar);
+      	position: absolute;
+      	bottom: 0;
+      	display: inline-block;
+        box-sizing: border-box;
+      	float: left;
+      	width: calc(var(--br-signal-strength-width) / 5 - var(--br-signal-strength-gutter));
+      	margin-left: 0px;
+      	margin-right: var(--br-signal-strength-gutter);
+        border: var(--br-signal-strength-empty-border,--br-signal-strength-border);
+      	background-color: var(--br-signal-strength-empty-color,rgba(0,0,0,0.2));
+      }
+
+      :host .signal-bar-1 {
+      	left: 0;
+        height: calc(var(--br-signal-strength-height) * 1 / 5);
+        @apply(--br-signal-strength-bar-1);
+      }
+
+      :host .signal-bar-2 {
+        left: calc(var(--br-signal-strength-width) * 1 / 5 );
+        height: calc(var(--br-signal-strength-height) * 2 / 5);
+        @apply(--br-signal-strength-bar-2);
+      }
+
+      :host .signal-bar-3 {
+        left: calc(var(--br-signal-strength-width) * 2 / 5);
+        height: calc(var(--br-signal-strength-height) * 3 / 5);
+        @apply(--br-signal-strength-bar-3);
+      }
+
+      :host .signal-bar-4 {
+        left: calc(var(--br-signal-strength-width) * 3 / 5);
+        height: calc(var(--br-signal-strength-height) * 4 / 5);
+        @apply(--br-signal-strength-bar-4);
+      }
+
+      :host .signal-bar-5 {
+        left: calc(var(--br-signal-strength-width) * 4 / 5);
+        height: calc(var(--br-signal-strength-height) * 5 / 5);
+        @apply(--br-signal-strength-bar-5);
+      }
+
+      :host .signal-bar-filled, .signal-bar[active] {
+        @apply(--br-signal-strength-bar-filled);
+        border: var(--br-signal-strength-filled-border,--br-signal-strength-border);
+      	background-color: var(--br-signal-strength-filled-color,#0067c6);
+      }
+    </style>
+    <div id="signalStrength" class="signal-strength">
+      <span class="signal-bar signal-bar-1" active$="{{_checkBarActive(1,level)}}"></span>
+      <span class="signal-bar signal-bar-2" active$="{{_checkBarActive(2,level)}}"></span>
+      <span class="signal-bar signal-bar-3" active$="{{_checkBarActive(3,level)}}"></span>
+      <span class="signal-bar signal-bar-4" active$="{{_checkBarActive(4,level)}}"></span>
+      <span class="signal-bar signal-bar-5" active$="{{_checkBarActive(5,level)}}"></span>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'br-signal-strength',
+
+      properties: {
+        /**
+        * The signal strength level (i.e., the number of bars filled)
+        */
+        level: {
+          type: Number,
+          value: 0
+        },
+        /**
+        * The signal strength in RSSI (common for wireless signals) but could
+        * represent any arbitrary measurement with customized threholds.
+        */
+        rssi: {
+          type: Number
+        },
+        /**
+        * An array of RSSI thresholds per level. Array length should be equal
+        * to 5, and should go in order of levels
+        */
+        levelThresholds: {
+          type: Array,
+          value: function(){
+            return [-87,-82,-77,-72,-67];
+          }
+        }
+      },
+
+      observers: [
+        '_observeRssi(rssi,levelThresholds)'
+      ],
+
+      _checkBarActive: function(bar,level){
+        return (level >= bar);
+      },
+
+      _observeRssi: function(rssi,levels){
+        if(typeof rssi !== "number" || rssi === null) return;
+        if(!levels && levels.length < 5) return;
+        if(rssi < levels[0]) this.set('level',0);
+        else if(rssi < levels[1]) this.set('level',1);
+        else if(rssi < levels[2]) this.set('level',2);
+        else if(rssi < levels[3]) this.set('level',3);
+        else if(rssi < levels[4]) this.set('level',4);
+        else this.set('level',5)
+      }
+
+    });
+  </script>
+</dom-module>
